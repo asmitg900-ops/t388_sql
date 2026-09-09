@@ -45,5 +45,29 @@ where department = "IT";
 update employee set title ="mrs."
 where  gender= "female";
 update employee set bonus = salary*0.05;
-select * from employee;
-desc employee
+select distinct Department from employee;
+
+select * from employee
+where department in ( "It","finance");
+
+
+
+
+use t388;
+create table kisan_info
+(ID int unique not null,
+name varchar(50) unique not null,
+age int check (age>=18),
+email_ID varchar(40) default "dummy@gmail.com"
+);
+drop  table kisan_info;
+insert into kisan_info
+values 
+(103,"vikas",18,default);
+select * from kisan_info;
+alter table kisan_info modify age int check (age>=20);
+
+desc kisan_info;
+
+
+

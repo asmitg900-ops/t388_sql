@@ -306,8 +306,29 @@ where  Department =(select Department from employee where fullname ="John Doe");
   
   select max(salary) from employee
   where salary <(select max(salary)from employee);
-  
+  -- to show 2nd highest salary 
+  select max(salary)from employee
+  where salary <(select max(salary)from employee);
+  -- 3rd highest salary 
+  select max(salary) from employee 
+  where salary <(select max(salary) from employee where salary <(select max(salary) from employee));
 
+  
+  -- multiple Row subquery 
+  select age from employee where EmployeeId in(1002,1003);
+  select * from employee
+  where age in (select age from employee where EmployeeId in(1002,1003));
+  
+  
+  use t388_db;
+  select distinct salary from employee;
+  
+ 
+  select * from employee
+ where  salary <any(select salary from employee where employeeid between 1001 and 1003);
+  
+ select * from employee
+ where  salary <all (select salary from employee where employeeid between 1001 and 1003);
      
   
  

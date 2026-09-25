@@ -329,10 +329,38 @@ where  Department =(select Department from employee where fullname ="John Doe");
   
  select * from employee
  where  salary <all (select salary from employee where employeeid between 1001 and 1003);
-     
-  
  
-        
+ -- joins 
+ use t388_db;
 
-
+select * from name_t388;
+select * from salary_t388;
  
+  -- inner joins 
+   select salary_t388.id,name,salary
+   from name_t388
+   join 
+   salary_t388
+   on name_t388.id =salary_t388.id;
+   
+   -- left join
+   select name_t388.id,name,salary
+   from
+   name_t388
+   left join 
+   salary_t388
+   on salary_t388.id= name_t388.id;
+   
+   -- right join  --
+   
+  select  name_t388.id,name,salary
+  from
+  salary_t388
+  right join
+  name_t388
+  on salary_t388.id =name_t388.id;
+   
+   
+   
+   
+   

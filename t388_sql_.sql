@@ -359,6 +359,126 @@ select * from salary_t388;
   right join
   name_t388
   on salary_t388.id =name_t388.id;
+  
+  create database practice;
+use practice;
+CREATE TABLE Handsets (
+    SetCode VARCHAR(10) PRIMARY KEY,
+    SetName VARCHAR(50) NOT NULL,
+    TouchScreen CHAR(1),
+    PhoneCost INT
+);
+
+INSERT INTO Handsets (SetCode, SetName, TouchScreen, PhoneCost)
+VALUES 
+    ('N1', 'Nokia 2G', 'N', 5000),
+    ('N2', 'Nokia 3G', 'Y', 8000),
+    ('B1', 'BlackBerry', 'N', 14000);
+    
+    select * from Handsets;
+    
+    CREATE TABLE Customer (
+    CustNo INT PRIMARY KEY,
+    SetNo VARCHAR(10),
+    CustAddress VARCHAR(100)
+);
+
+INSERT INTO Customer (CustNo, SetNo, CustAddress)
+VALUES 
+    (1, 'N2', 'Delhi'),
+    (2, 'B1', 'Mumbai'),
+    (3, 'N2', 'Mumbai'),
+    (4, 'N1', 'Kolkata'),
+    (5, 'B1', 'Delhi');
+    
+select * from customer;
+
+select CustNo,SetNo,CustAddress 
+from 
+customer
+join
+Handsets
+on SetNo = SetCode
+
+where SetName like "Nokia%";
+
+-- Outer join
+use t388_db;
+select * from name_t388;
+select * from salary_t388;
+
+
+
+
+select n.ID as Name_ID,s.ID as salary_ID, name, Salary
+from name_t388 as n
+left join
+salary_t388 as s
+on s.ID = n.ID
+union
+select n.ID as Name_ID,s.ID as salary_ID, name, Salary
+from name_t388 as n
+right join
+salary_t388 as s
+on s.ID = n.ID;
+
+create database FK_t388;
+use FK_T388;
+create table students 
+(ID int primary key auto_increment,
+Name varchar(20) );
+insert into students values
+(1,"kunal");
+
+desc students;
+select * from students ;
+insert into students (name) values
+("uday");
+
+
+create table info
+(id int ,
+scores int,
+foreign key(id) references students (id));
+select * from info;
+insert into  info  values(1,300),(2,300);
+select * from info;
+
+
+create database project;
+use FK_t388;
+CREATE TABLE Employee ( 
+ ID INT PRIMARY KEY, 
+ Name VARCHAR(100) NOT NULL, 
+ Age INT, 
+ Salary DECIMAL(10, 2) 
+); 
+CREATE TABLE Project ( 
+ ProjectID INT PRIMARY KEY, 
+ ProjectName VARCHAR(100) NOT NULL, 
+ ID INT, 
+ FOREIGN KEY (ID) REFERENCES Employee(ID) 
+ ON UPDATE CASCADE 
+ ON DELETE CASCADE 
+);
+INSERT INTO Employee (ID, Name, Age, Salary) VALUES 
+(101, 'Alice Smith', 29, 75000.00), 
+(102, 'Bob Jones', 34, 82000.50), 
+(103, 'Charlie Brown', 41, 95000.00), 
+(104, 'Diana Prince', 26, 68000.00);
+
+INSERT INTO Project (ProjectID, ProjectName, ID) VALUES 
+(1, 'Website Redesign', 101), 
+(2, 'Cloud Migration', 101), 
+(3, 'Mobile App Launch', 102), 
+(4, 'Data Analytics Pipeline', 103);
+
+
+select * from employee; 
+select * from project;
+
+update employee  set id = 500 where id = 101;
+ 
    
    
    

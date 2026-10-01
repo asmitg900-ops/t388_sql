@@ -478,9 +478,37 @@ select * from employee;
 select * from project;
 
 update employee  set id = 500 where id = 101;
+
+-- window function --
+select *, row_number() over (partition by department) as rank_indepartment
+from employee order by Department asc;
+ 
+select  
+fullname,Salary, row_number() over (partition by Salary) as rank_indepartment
+from employee order by Department asc;
  
    
-   
-   
+   select  
+fullname ,Salary,dense_rank() over (order by Salary) as rank_indepartment
+from employee ;
+
+select employeeid,fullname,department,salary,
+avg(salary) over (partition by department) as departmentAVGsalary,
+sum(salary) over (partition by department) as departmenttotalsalary
+
+from employee
+where gender ="male"
+order by Department,Salary desc;
+
+select employeeid,fullname,department,salary,age,
+lag(salary,1,0) over (partition by department order by age asc) as previousemployeesalarybyage
+from 
+employee
+order by department,age;
+   select employeeid,fullname,department,salary,age,
+lead(salary,2,"-") over ( order by salary) as previousemployeesalarybyage
+from 
+employee
+order by department,age;
    
    
